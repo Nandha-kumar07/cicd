@@ -51,4 +51,7 @@ jobs:
           username: ${{ secrets.EC2_USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
           script: |
-            ~/deploy.sh
+            sudo docker pull nandhakumar007/mern-frontend:latest
+            sudo docker stop mern-frontend || true
+            sudo docker rm mern-frontend || true
+            sudo docker run -d --name mern-frontend -p 80:80 nandhakumar007/mern-frontend:latest
